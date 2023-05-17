@@ -1,0 +1,28 @@
+﻿@model Category
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Category Form</h4>>
+            <p class="card-description">
+                Basic form elements
+            </p>
+            <form class="forms-sample" asp-action="create"enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Logo"></label>
+                    <input asp-for="Logo" class="form-control"  placeholder="Logo">
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile"></label>
+                    <input asp-for="ImageFile" class="form-control"  placeholder="Image">
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light"><a asp-action="index">Cancel</a></button>
+            </form>
+        </div>
+    </div>
+</div>

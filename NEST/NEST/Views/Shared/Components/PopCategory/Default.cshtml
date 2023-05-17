@@ -1,0 +1,7 @@
+﻿@model List<Category>
+@foreach (var item in Model)
+{
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">@item.Name</button>
+    </li>
+}

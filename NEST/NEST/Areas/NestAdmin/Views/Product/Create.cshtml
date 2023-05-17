@@ -1,0 +1,59 @@
+﻿@model Product
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Slider Form</h4>>
+            <p class="card-description">
+                Basic form elements
+            </p>
+            <form class="forms-sample" asp-action="create" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SellPrice"></label>
+                    <input asp-for="SellPrice" class="form-control" placeholder="SellPrice">
+                    <span asp-validation-for="SellPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CostPrice"></label>
+                    <input asp-for="CostPrice" class="form-control" placeholder="Image">
+                    <span asp-validation-for="CostPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DisCountPrice"></label>
+                    <input asp-for="DisCountPrice" class="form-control" placeholder="DisCount">
+                    <span asp-validation-for="DisCountPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StockCount"></label>
+                    <input asp-for="StockCount" class="form-control" placeholder="Rating">
+                    <span asp-validation-for="StockCount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId">Category</label>
+                    <select class="dropdown-Item" asp-for="CategoryId" asp-items="new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name))"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFront"></label>
+                    <input asp-for="ImageFront" class="form-control" placeholder="ImageFront">
+                    <span asp-validation-for="ImageFront" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageBack"></label>
+                    <input asp-for="ImageBack" class="form-control" placeholder="ImageBack">
+                    <span asp-validation-for="ImageBack" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Files"></label>
+                    <input asp-for="Files" class="form-control" placeholder="Rating">
+                    <span asp-validation-for="Files" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-light"><a asp-action="index">Cancel</a></button>
+            </form>
+        </div>
+    </div>
+

@@ -1,0 +1,24 @@
+﻿@model List<Product>
+@foreach (Product products in Model)
+{
+    <article class="row align-items-center hover-up">
+        <figure class="col-md-4 mb-0">
+            <a href="shop-product-right.html"><img src="~/assets/imgs/shop/@products.productImages.Where(x=>x.IsFront==true).FirstOrDefault()?.Image" alt="" /></a>
+        </figure>
+        <div class="col-md-8 mb-0">
+            <h6>
+                <a href="shop-product-right.html">Foster Farms Takeout Crispy Classic Buffalo Wings</a>
+            </h6>
+            <div class="product-rate-cover">
+                <div class="product-rate d-inline-block">
+                    <div class="product-rating" style="width: @(products.Rating*20)"></div>
+                </div>
+                <span class="font-small ml-5 text-muted"> (@products.Rating)</span>
+            </div>
+            <div class="product-price">
+                <span>@products.DisCountPrice</span>
+                <span class="old-price">@products.SellPrice</span>
+            </div>
+        </div>
+    </article>
+}
