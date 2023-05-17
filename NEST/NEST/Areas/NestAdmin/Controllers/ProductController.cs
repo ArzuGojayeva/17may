@@ -50,7 +50,7 @@ namespace NEST.Areas.NestAdmin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task <IActionResult> Create(Product product)
+        public async Task <IActionResult> Create(ProductVm product)
         {
             ViewBag.categories = _context.categories.ToList();
             if (!ModelState.IsValid) return View();
@@ -81,7 +81,17 @@ namespace NEST.Areas.NestAdmin.Controllers
                 Image = await product.ImageFront.SaveFileAsync(_env.WebRootPath, "shop"),
                 IsBack =false,
                 IsFront=true,
-                product=product
+                product=new Product
+                        {
+                            Name = product.Name,
+                            SellPrice = product.SellPrice,
+                            CostPrice = product.CostPrice,
+                            Discount = product.Discount,
+                            StockCount = product.StockCount,
+                            CategoryId = product.CategoryId,
+                            ProductImages = product.ProductImages,
+                            Tags = product.Tags,
+                        }
             }) ;
             if (!CheckFile(product.ImageBack, 200, out string messageback))
             {
@@ -107,10 +117,39 @@ namespace NEST.Areas.NestAdmin.Controllers
                     Image = await file.SaveFileAsync(_env.WebRootPath, "shop"),
                     IsBack = false,
                     IsFront = false,
-                    product = product
+                    product =new Product
+                        {
+                            Name = product.Name,
+                            SellPrice = product.SellPrice,
+                            CostPrice = product.CostPrice,
+                            Discount = product.Discount,
+                            StockCount = product.StockCount,
+                            CategoryId = product.CategoryId,
+                            ProductImages = product.ProductImages,
+                            Tags = product.Tags,
+                        }
                 });
             }
-            await _context.products.AddAsync(product);
+            product.Tags = new List<Tag>();
+
+            var tags = _context.Tags.Where(x => product.TagIds.Contains(x.Id)).ToList();
+
+            foreach (var tag in tags)
+            {
+                product.Tags.Add(tag);
+            }
+
+            await _context.Products.AddAsync(new Product
+            {
+                Name = product.Name,
+                SellPrice = product.SellPrice,
+                CostPrice = product.CostPrice,
+                Discount = product.Discount,
+                StockCount = product.StockCount,
+                CategoryId = product.CategoryId,
+                ProductImages = product.ProductImages,
+                Tags = product.Tags,
+            });
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
            
